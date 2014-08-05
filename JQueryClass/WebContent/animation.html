@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	#dog {
+		position: absolute;
+		top:650px;
+		left:1000px;
+	
+	}
+</style>
+</head>
+<body>
+<input type="button" id="buttonShowHide" value="顯示隱藏"/>
+<input type="button" id="buttonSlide" value="滑入滑出"/>
+<input type="button" id="buttonFade" value="淡入淡出"/>
+<div id="div1">
+	<img src="Images/toy.jpg" id="img1">
+	<img src="Images/dog.gif" id="dog">
+</div>
+
+<!-- 只要jQuery.js可以從Google下載，我們就從Google下載 -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- 如果從Google下載失敗，我們就從自己的Server上下載jQuery.js檔 -->
+<script>!window.jQuery && document.write("<script src='Scripts/jquery-1.11.1.min.js'><\/script>")</script>
+<script>
+//為了避免$與別的函式庫發生衝突的寫法
+(function($){
+		  $("#buttonShowHide").click(function(){
+/* 			  $('#div1').hide(1500, function(){
+				  $('#div1').show(1500);
+			  }); */
+			  
+			  $('#div1').toggle(1500);
+		  })
+		  
+		  $("#buttonSlide").click(function(){
+ 			//  $('#div1').slideUp(1500, function(){ //隱藏
+			//	  $('#div1').slideDown(1500);//顯示
+			  //}); 
+			  
+			  $('#div1').slideToggle(1500);
+		  })
+	  
+
+		  $("#buttonFade").click(function(){
+/*  			  $('#div1').fadeOut(1500, function(){ //隱藏
+				  $('#div1').fadeIn(1500);//顯示
+			  }) */
+			  
+			  $('#div1').fadeToggle(1500);
+		  })
+		  
+		  //調整元素的透明度
+		  $('#img1').fadeTo(500,0.3).hover(function(){
+			  $(this).fadeTo(1500,1);
+		  }, function(){
+			  $(this).fadeTo(1500,0.3);
+		  })
+		  
+		  //動畫
+		  $('#dog').click(function(){
+			$(this).animate({
+				"left":10,
+				"top" : 100,
+				"width":250,
+				"opacity":0.3
+			},6000)  
+		  })
+		  
+})(jQuery)
+</script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+     
+        table
+        {
+            border:1px solid green;
+            width:300px;
+            border-collapse:collapse;
+        }
+        td,th
+        {
+            border:1px solid green;
+            padding:4px;
+        }
+        .head {
+        	background-color:blue; 
+        	color:white
+        
+        }
+		
+		
+		.even{
+			background-color:pink;
+		
+		}
+		.odd{
+			background-color:orange;
+		
+		}
+		.over {
+			background-color:yellow;
+			
+		}
+		.click {
+		
+			background-color:purple;
+			color:white
+		
+		}
+	
+       
+    </style>
+</head>
+<body>
+  <!--
+        1. table head 的background-color:blue,字是color:white
+        2. table body 的奇數列背景色是background-color:pink
+        3. table body 的偶數列背景色是background-color:orange
+        4.滑鼠移到body的資料上,那一列tr的背景色是background-color:yellow
+        5.滑鼠離開body的資料上,變回原來的顏色
+        6.click某一列tr background-color:purple,字是color:white
+
+
+        -->
+     <table id="table1">
+         <thead>
+         <tr>
+             <th>Col1</th>
+             <th>Col2</th>
+             <th>Col3</th>
+             <th>刪除</th>
+         </tr>
+             </thead>
+         <tbody>
+        <tr>
+            <td>0A</td>
+            <td>1B</td>
+            <td>2C</td>
+            <td><a href="#" class="del">刪除</a></td>
+        </tr>
+        <tr>
+            <td>3D</td>
+            <td>4E</td>
+            <td>5F</td>
+            <td><a href="#" class="del">刪除</a></td>
+        </tr>
+        <tr>
+            <td>6G</td>
+            <td>7H</td>
+            <td>8I</td>
+            <td><a href="#" class="del">刪除</a></td>
+        </tr>
+        <tr>
+            <td>0A</td>
+            <td>1B</td>
+            <td>2C</td>
+            <td><a href="#" class="del">刪除</a></td>
+        </tr>
+        <tr>
+            <td>3D</td>
+            <td>4E</td>
+            <td>5F</td>
+            <td><a href="#" class="del">刪除</a></td>
+        </tr>
+        <tr>
+            <td>6G</td>
+            <td>7H</td>
+            <td>8I</td>
+            <td><a href="#" class="del">刪除</a></td>
+        </tr>
+      
+             </tbody>
+    </table>
+    <br>
+    <input type="button" id="buttonAdd" value="add"/>
+
+<!-- 只要jQuery.js可以從Google下載，我們就從Google下載 -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- 如果從Google下載失敗，我們就從自己的Server上下載jQuery.js檔 -->
+<script>!window.jQuery && document.write("<script src='Scripts/jquery-1.11.1.min.js'><\/script>")</script>
+<script>
+//為了避免$與別的函式庫發生衝突的寫法
+(function($){
+	  //程式碼寫在這裡
+	//1. table head 的background-color:blue,字是color:white
+	//var cssObj={'background-color':'blue', 'color':'white'}; 
+	$('thead').addClass('head');
+	//2. table body 的奇數列背景色是background-color:pink
+	//var cssObj2={'background-color':'pink'};
+	$('tbody> tr:even').addClass('even');
+	
+	//3. table body 的偶數列背景色是background-color:orange
+	//var cssObj3={'background-color':'orange'};
+	$('tbody> tr:odd').addClass('odd');
+	$('tbody >tr').mouseover(over).mouseout(out).click(click);
+	
+	function over(){
+		
+		$(this).addClass('over');
+	
+
+	}
+	function out(){
+	
+		$(this).removeClass('over');
+	}
+	function click(){
+		$(this).toggleClass('click');
+	}
+	
+/* 	$(".del").bind("click", function(){
+		$(this).parents("tr").remove();
+	}); */
+	
+	$("#table1 > tbody").on("click", ".del" , function(){
+		$(this).parents("tr").remove();
+	});
+	
+	
+	$('#buttonAdd').bind('click',function(){
+		$('#table1>tbody').append("<tr><td>X</td><td>Y</td><td>Z</td><td><a href='#' class='del'>刪除</a></td></tr>")
+	
+		//___________________________
+		//1. table head 的background-color:blue,字是color:white
+		//var cssObj={'background-color':'blue', 'color':'white'}; 
+		$('thead').addClass('head');
+		//2. table body 的奇數列背景色是background-color:pink
+		//var cssObj2={'background-color':'pink'};
+		$('tbody> tr:even').addClass('even');
+		
+		//3. table body 的偶數列背景色是background-color:orange
+		//var cssObj3={'background-color':'orange'};
+		$('tbody> tr:odd').addClass('odd');
+		$('tbody >tr').mouseover(over).mouseout(out).click(click);
+	})
+	
+	
+	
+})(jQuery)
+</script>
+</body>
+</html>

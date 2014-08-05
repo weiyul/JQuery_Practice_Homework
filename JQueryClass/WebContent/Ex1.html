@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- <script type="text/javascript" src="Scripts/jquery-1.11.1.min.js"></script>
+ -->
+ <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/prototype/1.7.2.0/prototype.js"></script>
+ <script type="text/javascript">
+
+//window.load
+/* jQuery(document).ready(function(){
+	jQuery('h1').css('color','blue');
+}); */
+
+//Putting jQuery Into No-Conflict Mode
+//Method1:
+var jq= jQuery.noConflict();
+jq(function(){
+	jQuery('h1').css('color','blue');
+});
+
+//Method2
+
+jQuery(function($){
+	$('h1').css('color','blue');
+});
+
+//Method 3, using anonymous style
+(function($){
+	$('h1').css('color','blue');
+})(jQuery);
+
+/* $(function(){
+	$('h1').css('color','blue');
+}); */
+</script>
+</head>
+<body>
+<h1>First jQuery</h1>
+</body>
+</html>

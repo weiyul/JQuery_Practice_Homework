@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	
+</style>
+</head>
+<body>
+<input type="text" value="input value">
+<input type="text" value="input value">
+<input type="text" value="input value">
+<input type="text" name="red" value="input value">
+<input type="button" value="button">
+<a href="a.pdf">A(PDF)</a> | <a href="a.text">A(TEXT)</a>
+<a href="b.pdf">B(PDF)</a> | <a href="b.text">B(TEXT)</a>
+<table>
+	<thead>
+
+	</thead>
+	<tbody>
+	<tr>
+		<td>a0</td>
+		<td>b1</td>
+	</tr>
+	<tr>
+		<td>c2</td>
+		<td>d3</td>
+	</tr>
+	</tbody>
+
+</table>
+<input type="text" id="text1"><input type="button" id="buttonClick" value="click">
+<div id="div1"><h2>hi good afternoon</h2></div>
+<div id="div2"></div>
+<select id="select1">
+	<option value="a">Item a</option>
+	<option value="b">Item b</option>
+	<option value="c">Item c</option>
+	<option value="d">Item d</option>
+</select>
+
+
+<!-- 只要jQuery.js可以從Google下載，我們就從Google下載 -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- 如果從Google下載失敗，我們就從自己的Server上下載jQuery.js檔 -->
+<script>!window.jQuery && document.write("<script src='Scripts/jquery-1.11.1.min.js'><\/script>")</script>
+<script>
+//為了避免$與別的函式庫發生衝突的寫法
+(function($){
+//	$('input').css('color', 'silver');	
+	$('input[type!="text"]').css('color', 'green');
+	$('input[name ="red"]').css('color', 'red');
+	$('a').css('text-decoration','none');//去除底線
+	
+	$('a[href $= "pdf"]').css({ 
+		'background':'url(Images/pdf.gif) no-repeat', 'padding-left':'20px'
+		
+	})
+		$('a[href *= ".text"]').css({ 
+		'background':'url(Images/word.gif) no-repeat', 'padding-left':'20px'
+		
+	})
+	
+/* 		$('a[href = "b.text"]').css({ 
+		'background':'url(Images/word.gif) no-repeat', 'padding-left':'20px'
+		
+	}) */
+	
+	console.log($('#div1').text());
+	console.log($('#div1').html());
+	$('#buttonClick').click(function(){
+		var txt= $('#text1').val();
+		$('#div2').html("<h2>aaa"+txt+"</h2>");
+		
+	});
+	$('#text1').val("Guest");//default value 
+	
+	$('#select1').val('b').change(function(){
+		//var v= $(this).val();
+		//var t= $(this).text();
+		//console.log(v);
+		//console.log(t);
+		//var t2= $('#select1 >:selected').text();
+		//console.log(t2);
+		//var i= $('#select1 >:selected').index();
+		
+		var option=$('#select1 >:selected');
+		var i2= option.val();
+		console.log(i2);
+	});
+	
+
+
+	
+})(jQuery)
+</script>
+</body>
+</html>

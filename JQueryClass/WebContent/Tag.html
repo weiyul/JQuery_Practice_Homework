@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<a href="a.html" id="y1">yahoo</a> | <a href="b.html" id="y2">yahoo Canada</a><br>
+<a href="http://www.google.com.tw" id="b1" >google</a> | <a href="http://www.facebook.com.tw" id="b2">facebook</a> 
+<br>
+<input type="checkbox" id = "checkBoxToggle" name="ToggleAll" value="Toggle all" >ToggleAll <br>
+<input type="checkbox" name="a1" value="a1" checked>
+<input type="checkbox" name="a2" value="a2" >
+<input type="checkbox" name="a3" value="a3" checked>
+<input type="checkbox" name="a4" value="a4" >
+<input type="checkbox" name="a5" value="a5" checked>
+<br>
+<input type="button" id="buttonToggle" value="ButtonAttr">
+<br>
+<input type="button" id="ButtonProp" value="ButtonProp">
+<div id="div1"></div>
+
+
+
+<!-- 只要jQuery.js可以從Google下載，我們就從Google下載 -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- 如果從Google下載失敗，我們就從自己的Server上下載jQuery.js檔 -->
+<script>!window.jQuery && document.write("<script src='Scripts/jquery-1.11.1.min.js'><\/script>")</script>
+<script>
+//為了避免$與別的函式庫發生衝突的寫法
+(function($){
+	  //$('a[id *=b]').attr('target', '_blank');
+	  $('a[href ^="http"]').attr('target', '_blank');
+	  $('#buttonToggle').click(function(){
+		  if($(":checkbox").attr("checked")=="checked"){
+			  $(":checkbox").removeAttr("checked");
+		  }else{
+			  $(":checkbox").attr("checked","checked" );
+		  }
+		  
+	  });
+	  $('#ButtonProp').click(function(){
+		  if($(":checkbox").prop("checked")){
+			  $(":checkbox").prop("checked", false);
+		  }else{
+			  $(":checkbox").prop("checked", true);
+		  }
+		  
+	  });
+	  $('#checkBoxToggle').change(function(){
+
+			var b= $(this).prop("checked"); //得true, false 
+			
+			$(':checkbox').prop("checked", b);//所有checkbox的值 隨checkBoxToggle改變
+
+		  
+	  });
+	  //逐一判斷
+	  $(':checkbox').each(function(){
+		  if($(this).prop("checked")){
+			  $(this).prop("checked", false);
+		  }else{
+			  $(this).prop("checked", true);
+		  }
+	  })
+	//陣列讀取
+	var names=["Jack", "Mary", "Tom"];
+  	$.each(names, function(){
+  		console.log(this);
+
+  		$('#div1').append("<h1>" + this + "</h1>");
+  	})
+	//讀取index 和  value
+	$.each(names, function(index, value){
+		console.log(index+"-"+value);
+	})
+	
+	//物件讀取
+	var employee={"name":"Jack", "age":20};
+  	$.each(employee, function(key, value){
+  		console.log(key+":"+value);
+  	})
+	
+  	//物件陣列讀取
+  	var employees = [
+		{"name":"Jack", "age":20},
+		{"name":"Amy", "age":20},
+		{"name":"Mike", "age":20}
+  	];
+  	$.each(employees, function(index, value){
+  		console.log(value.name);//read each name
+  	});
+	  
+})(jQuery)
+</script>
+</body>
+</html>
